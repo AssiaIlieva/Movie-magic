@@ -1,4 +1,5 @@
 const movies = [{
+    _id: 1,
     name: 'Jungle Cuise',
     genre: 'Adventrue',
     dirctor: 'Lukas',
@@ -13,5 +14,6 @@ exports.getAll = () => {
 }
 
 exports.create = (movieData) => {
+    movieData._id = movies[movies.length - 1]._id + 1;
     movies.push(movieData);
 }
