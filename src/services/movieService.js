@@ -24,3 +24,7 @@ result = await Movie.find().lean()
 }
 
 exports.create = (movieData) => Movie.create(movieData);
+
+exports.attach = async (movieId, castId) => {
+    return await Movie.findByIdAndUpdate(movieId, {$push: {casts: castId}})
+}
