@@ -5,8 +5,8 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    const body = req.body;
-    console.log(body);
+    const castData = req.body;
+   
 
     res.redirect('/');
 })
