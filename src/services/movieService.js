@@ -7,21 +7,21 @@ exports.getOne = (movieId) => Movie.findById(movieId).populate('casts');
 
 // TODO:Filter result in mongoDB
 exports.search = (title, genre, year) => {
-    let query = Movie.find()
+    let query = {}
 
     if(title){
-        query = query.find({title: new RegExp(title, 'i')});
+        query.title = new RegExp(title, 'i');
     };
 
     if(genre){
-        query = query.find({genre: new RegExp(genre, 'i')})
+        query.genre = new RegExp(genre, 'i');
     };
 
     if(year){
-        query = query.find({year})
+        query.year = year;
     }
 
-    return query
+    return Movie.find(query);
 }
 
 exports.create = (movieData) => Movie.create(movieData);
