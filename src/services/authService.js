@@ -1,8 +1,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('../lib/jwt');
+const { SECRET} = require('../config/config')
 
-const SECRET = 'A1s2D3f4G5h6J7k8L9zqxwcevrbtnymui0o9p8';
 
 // TODO: Check if the user already exists
 exports.register = (userData) => User.create(userData);
