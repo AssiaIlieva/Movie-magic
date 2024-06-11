@@ -26,6 +26,8 @@ exports.search = (title, genre, year) => {
 
 exports.create = (movieData) => Movie.create(movieData);
 
+exports.edit = (movieId, movieData) => Movie.findByIdAndUpdate(movieId, movieData);
+
 exports.attach = async (movieId, castId) => {
     // TODO: validate castId if exists
     // TODO: validate if cast is already added
@@ -42,4 +44,6 @@ exports.attach = async (movieId, castId) => {
     // await movie.save();
     // await cast.save();
     // return movie;
-}
+};
+
+exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
