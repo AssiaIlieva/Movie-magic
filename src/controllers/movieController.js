@@ -27,7 +27,7 @@ router.post('/create', isAuth, async (req, res) => {
 router.get('/movies/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getOne(movieId).lean();
-    const isOwner = movie.owner == req.user._id;
+    const isOwner = movie.owner == req.user?._id;
     
     // TODO: to be changed with handlebars helpers
     movie.ratingStars = '&#x2605'.repeat(movie.rating);
