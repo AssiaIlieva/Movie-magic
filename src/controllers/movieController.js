@@ -27,7 +27,7 @@ router.get('/movies/:movieId', async (req, res) => {
     // TODO: to be changed with handlebars helpers
     movie.ratingStars = '&#x2605'.repeat(movie.rating);
 
-    res.render('details', {movie});
+    res.render('movie/details', {movie});
 });
 
 router.get('/movies/:movieId/attach', isAuth, async(req, res) => {
