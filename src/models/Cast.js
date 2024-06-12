@@ -1,28 +1,33 @@
 const mongoose = require('mongoose');
-const { validate } = require('./Movie');
 
 const castSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'All fields are required'],
+        minLength: [5, 'Should be at least 5 characters'],
+        match: [/^[A-Za-z0-9\s]$/, 'Incorrect characters in the field'],
     },
     age: {
         type: Number,
-        required: true,
-        max: 120,
-        min: 5
+        required: [true, 'All fields are required'],
+        max: [120, 'Must be between 1 and 120'],
+        min: [1, 'Must be between 1 and 120']
     },
     born: {
         type: String,
-        required: true
+        required: [true, 'All fields are required'],
+        minLength: [10, 'Should be at least 10 characters'],
+        match: [/^[A-Za-z0-9\s]$/, 'Incorrect characters in the field'],
     },
     nameInMovie: {
         type: String,
-        required: true
+        required: [true, 'All fields are required'],
+        minLength: [5, 'Should be at least 5 characters'],
+        match: [/^[A-Za-z0-9\s]$/, 'Incorrect characters in the field'],
     },
     castImage: {
         type: String,
-        required: true,
+        required: [true, 'All fields are required'],
         validate: {
             validator(value){
                 return /^https?:\/\/.+/.test(value);
