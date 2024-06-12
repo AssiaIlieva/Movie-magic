@@ -1,36 +1,38 @@
-const router = require('express').Router();
-const User = require('../models/User');
-const authService = require('../services/authService')
+const router = require("express").Router();
+const User = require("../models/User");
+const authService = require("../services/authService");
 
-router.get('/register', (req, res) => {
-    res.render('auth/register');
+router.get("/register", (req, res) => {
+  res.render("auth/register");
 });
 
-router.post('/register', async (req, res) => {
-    const userData = req.body;
-    await authService.register(userData)
+router.post("/register", async (req, res) => {
+  const userData = req.body;
 
-    res.redirect('/auth/login');
+  try {
+    await authService.register(userData);
+    res.redirect("/auth/login");
+  } catch (error) {
+    res.render("auth/register", { error: error.message });
+  }
 });
 
-router.get('/login', (req, res) => {
-    res.render('auth/login');
+router.get("/login", (req, res) => {
+  res.render("auth/login");
 });
 
-router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
-    const token = await authService.login(email, password);
-    
-    res.cookie('auth', token);
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const token = await authService.login(email, password);
 
-    res.redirect('/')
+  res.cookie("auth", token);
+
+  res.redirect("/");
 });
 
-router.get('/logout', (req, res) => {
-    res.clearCookie('auth');
-    res.redirect('/');
-})
-
-
+router.get("/logout", (req, res) => {
+  res.clearCookie("auth");
+  res.redirect("/");
+});
 
 module.exports = router;
