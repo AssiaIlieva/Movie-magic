@@ -23,12 +23,12 @@ userSchema.pre('save', async function(){
     this.password = hash;
 });
 
-userSchema.virtual('rePassword')
-    .set(function(value){
-        if(value !== this.password){
-            throw new MongooseError('Password missmatch!')
-        }
-    })
+// userSchema.virtual('rePassword')
+//     .set(function(value){
+//         if(value !== this.password){
+//             throw new MongooseError('Password missmatch!')
+//         }
+//     })
 
 const User = model('User', userSchema);
 

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const authService = require("../services/authService");
+const { getErrorMessage } = require("../utils/errorUtils");
 
 router.get("/register", (req, res) => {
   res.render("auth/register");
@@ -8,12 +9,18 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res) => {
   const userData = req.body;
+  const { email, password, rePassword } = req.body;
+  if (password !== rePassword) {
+    const message = `Password and Repeate-Password doesn\'t match`;
+    res.render("auth/register", { ...userData, error: message });
+  }
 
   try {
     await authService.register(userData);
     res.redirect("/auth/login");
   } catch (error) {
-    res.render("auth/register", { error: error.message });
+    const message = getErrorMessage(error);
+    res.render("auth/register", { ...userData, error: message });
   }
 });
 
