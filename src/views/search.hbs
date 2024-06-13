@@ -12,11 +12,18 @@
   <div class="band">
 
     <!-- If there are posts for movie in the database display each of them -->
+  {{#if movies}}  
         {{> catalog}}
-
+        
     <!-- If there are no posts matched display: -->
     <!-- <div class="no-posts">
                         <p class="no-offer">There are no movies matched...</p>
                     </div> -->
+    
+{{else}}
+  <div class="no-posts">
+    <p class="no-offer">There are no movies matched...</p>
+  </div>
+{{/if}}
   </div>
 </section>
