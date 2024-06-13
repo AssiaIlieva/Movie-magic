@@ -3,9 +3,18 @@
 <section id="catalog">
     <h1>All Movies</h1>
     <div class="band">
+        <!-- If there are posts for creature in the database display each of them -->
+
+        {{#if movies}}
+
         {{> catalog}}
 
-        <!-- If there are posts for creature in the database display each of them -->
-       
+        {{else}}
+
+        <div class="no-posts">
+         <p class="no-offer">There are no posts yet...</p>
+        </div>
+
+       {{/if}}
     </div>
 </section>
