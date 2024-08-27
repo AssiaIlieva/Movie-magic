@@ -20,6 +20,7 @@ router.post("/register", async (req, res) => {
     res.redirect("/auth/login");
   } catch (error) {
     const message = getErrorMessage(error);
+    console.log(message);
     res.render("auth/register", { ...userData, error: message });
   }
 });
